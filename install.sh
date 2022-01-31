@@ -21,6 +21,7 @@ su $user -c "echo 'try user'"
 
 chmod 755 intuos4oled.py
 chmod 755 init.sh
+chmod 755 button_mapping.sh
 cp intuos4oled.py $PREFIX/bin/
 if ! [ `which at` ]
 then

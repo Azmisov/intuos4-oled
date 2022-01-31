@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*
 
 #
@@ -137,6 +137,8 @@ class Screen:
                             pass
                         else:
                             print ("ERROR: wrong format in file %s for led=%i, button=%i."%(filename, led, button))
+        print("Setting button mappings")
+        subprocess.call([os.path.join(os.path.dirname(__file__), "button_mapping.sh")])
 
 def sudo_init (ids):
     """Set leds writable by all
@@ -364,9 +366,10 @@ def clear_buttons (button, span, screen, flip):
 
     
 def get_font_path (font):
+    print("Looking for font: ", font)
     l = subprocess.check_output(["fc-list"])
     l = l.splitlines()
-    f = [x for x in l if font in x]
+    f = [str(x) for x in l if font in str(x)]
     if f == []:
         print ("ERROR: font %s not found"%font)
         return (None)
