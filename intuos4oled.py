@@ -369,7 +369,7 @@ def get_font_path (font):
     print("Looking for font: ", font)
     l = subprocess.check_output(["fc-list"])
     l = l.splitlines()
-    f = [str(x) for x in l if font in str(x)]
+    f = [x.decode("utf8") for x in l if font in x.decode("utf8")]
     if f == []:
         print ("ERROR: font %s not found"%font)
         return (None)
